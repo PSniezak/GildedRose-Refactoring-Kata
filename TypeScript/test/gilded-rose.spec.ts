@@ -32,12 +32,30 @@ describe('Gilded Rose', () => {
             expect(item.quality).to.equal(8);
         });
 
-        it('should never have a negative quality', () => {
+        it('should never have an item with a negative quality', () => {
             const gildedRose = new GildedRose([ new Item('Pepper', 0, 0) ]);
 
             const [item] = gildedRose.updateQuality();
 
             expect(item.quality).to.equal(0);
-        })
+        });
+
+        it("should not increase an item's quality above 50", () => {
+            const gildedRose = new GildedRose([ new Item('Wine', 1, 50) ]);
+
+            const [item] = gildedRose.updateQuality();
+
+            expect(item.quality).to.equal(50);
+        });
+    });
+
+    describe('Aged Brie', () => {
+        it("should increase in quality the older it gets", () => {
+            const gildedRose = new GildedRose([ new Item('Aged Brie', 5, 5) ]);
+
+            const [item] = gildedRose.updateQuality();
+
+            expect(item.quality).to.equal(6);
+        });
     });
 });
