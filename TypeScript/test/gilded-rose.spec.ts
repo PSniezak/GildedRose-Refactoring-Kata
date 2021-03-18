@@ -41,7 +41,7 @@ describe('Gilded Rose', () => {
         });
 
         it("should not increase an item's quality above 50", () => {
-            const gildedRose = new GildedRose([ new Item('Wine', 1, 50) ]);
+            const gildedRose = new GildedRose([ new Item('Aged Brie', 1, 50) ]);
 
             const [item] = gildedRose.updateQuality();
 
@@ -56,6 +56,17 @@ describe('Gilded Rose', () => {
             const [item] = gildedRose.updateQuality();
 
             expect(item.quality).to.equal(6);
+        });
+    });
+
+    describe('Sulfuras, Hand of Ragnaros', () => {
+        it("should not decrease in sellIn or quality", () => {
+            const gildedRose = new GildedRose([ new Item('Sulfuras, Hand of Ragnaros', 1, 80) ]);
+
+            const [item] = gildedRose.updateQuality();
+
+            expect(item.sellIn).to.equal(1);
+            expect(item.quality).to.equal(80);
         });
     });
 });
