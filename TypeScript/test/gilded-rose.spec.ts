@@ -20,6 +20,24 @@ describe('Gilded Rose', () => {
 
             expect(item.sellIn).to.equal(0);
             expect(item.quality).to.equal(0);
+        });
+    });
+
+    describe('Quality System', () => {
+        it("should decrease quality twice as fast when sell's date has passed", () => {
+            const gildedRose = new GildedRose([ new Item('Milk', 0, 10) ]);
+
+            const [item] = gildedRose.updateQuality();
+
+            expect(item.quality).to.equal(8);
+        });
+
+        it('should never have a negative quality', () => {
+            const gildedRose = new GildedRose([ new Item('Pepper', 0, 0) ]);
+
+            const [item] = gildedRose.updateQuality();
+
+            expect(item.quality).to.equal(0);
         })
-    })
+    });
 });
