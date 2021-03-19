@@ -1,4 +1,4 @@
-import { decreaseQuality } from './utils';
+import { increaseQuality, decreaseQuality } from './utils';
 
 export class Item {
   readonly name: string;
@@ -16,6 +16,16 @@ export class Normal extends Item {
   decay () {
     this.quality = decreaseQuality(this.quality);
     this.quality = this.sellIn <= 0 ? decreaseQuality(this.quality) : this.quality;
+    this.sellIn -= 1;
+
+    return this;
+  }
+}
+
+export class AgedBrie extends Item {
+  decay () {
+    this.quality = increaseQuality(this.quality);
+    this.quality = this.sellIn < 0 ? increaseQuality(this.quality) : this.quality;
     this.sellIn -= 1;
 
     return this;

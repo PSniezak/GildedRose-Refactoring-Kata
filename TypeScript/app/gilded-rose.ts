@@ -1,9 +1,11 @@
-import { Normal } from './item';
+import { AgedBrie, Normal } from './item';
+
+type GildedRoseItems = Normal | AgedBrie;
 
 export class GildedRose {
-  items: Normal[];
+  items: GildedRoseItems[];
   
-  constructor(items: Normal[] = []) {
+  constructor(items: GildedRoseItems[] = []) {
     this.items = items;
   }
   

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { GildedRose } from '../app/gilded-rose';
-import { Normal } from '../app/item';
+import { Normal, AgedBrie } from '../app/item';
 
 describe('Gilded Rose', () => {
     describe('General', () => {
@@ -42,7 +42,7 @@ describe('Gilded Rose', () => {
         });
 
         it("should not increase an item's quality above 50", () => {
-            const gildedRose = new GildedRose([ new Normal('Aged Brie', 1, 50) ]);
+            const gildedRose = new GildedRose([ new AgedBrie('Aged Brie', 1, 50) ]);
 
             const [item] = gildedRose.updateQuality();
 
@@ -52,7 +52,7 @@ describe('Gilded Rose', () => {
 
     describe('Aged Brie', () => {
         it("should increase in quality the older it gets", () => {
-            const gildedRose = new GildedRose([ new Normal('Aged Brie', 5, 5) ]);
+            const gildedRose = new GildedRose([ new AgedBrie('Aged Brie', 5, 5) ]);
 
             const [item] = gildedRose.updateQuality();
 
