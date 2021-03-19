@@ -1,11 +1,11 @@
 import { expect } from 'chai';
 import { GildedRose } from '../app/gilded-rose';
-import { Item } from '../app/item';
+import { Normal } from '../app/item';
 
 describe('Gilded Rose', () => {
     describe('General', () => {
         it('should add a new item with default values', () => {
-            const gildedRose = new GildedRose([ new Item('Beer', 0, 0) ]);
+            const gildedRose = new GildedRose([ new Normal('Beer', 0, 0) ]);
 
             const [item] = gildedRose.items;
     
@@ -15,7 +15,7 @@ describe('Gilded Rose', () => {
         });
 
         it("should decrease an item's values after a day", () => {
-            const gildedRose = new GildedRose([ new Item('Apple', 1, 1) ]);
+            const gildedRose = new GildedRose([ new Normal('Apple', 1, 1) ]);
 
             const [item] = gildedRose.updateQuality();
 
@@ -26,7 +26,7 @@ describe('Gilded Rose', () => {
 
     describe('Quality System', () => {
         it("should decrease quality twice as fast when sell's date has passed", () => {
-            const gildedRose = new GildedRose([ new Item('Milk', 0, 10) ]);
+            const gildedRose = new GildedRose([ new Normal('Milk', 0, 10) ]);
 
             const [item] = gildedRose.updateQuality();
 
@@ -34,7 +34,7 @@ describe('Gilded Rose', () => {
         });
 
         it('should never have an item with a negative quality', () => {
-            const gildedRose = new GildedRose([ new Item('Pepper', 0, 0) ]);
+            const gildedRose = new GildedRose([ new Normal('Pepper', 0, 0) ]);
 
             const [item] = gildedRose.updateQuality();
 
@@ -42,7 +42,7 @@ describe('Gilded Rose', () => {
         });
 
         it("should not increase an item's quality above 50", () => {
-            const gildedRose = new GildedRose([ new Item('Aged Brie', 1, 50) ]);
+            const gildedRose = new GildedRose([ new Normal('Aged Brie', 1, 50) ]);
 
             const [item] = gildedRose.updateQuality();
 
@@ -52,7 +52,7 @@ describe('Gilded Rose', () => {
 
     describe('Aged Brie', () => {
         it("should increase in quality the older it gets", () => {
-            const gildedRose = new GildedRose([ new Item('Aged Brie', 5, 5) ]);
+            const gildedRose = new GildedRose([ new Normal('Aged Brie', 5, 5) ]);
 
             const [item] = gildedRose.updateQuality();
 
@@ -62,7 +62,7 @@ describe('Gilded Rose', () => {
 
     describe('Sulfuras, Hand of Ragnaros', () => {
         it("should not decrease in sellIn or quality", () => {
-            const gildedRose = new GildedRose([ new Item('Sulfuras, Hand of Ragnaros', 1, 80) ]);
+            const gildedRose = new GildedRose([ new Normal('Sulfuras, Hand of Ragnaros', 1, 80) ]);
 
             const [item] = gildedRose.updateQuality();
 
@@ -73,7 +73,7 @@ describe('Gilded Rose', () => {
 
     describe('Backstage passes', () => {
         it("should increase in quality by 1 with a sell in above 10", () => {
-            const gildedRose = new GildedRose([ new Item('Backstage passes to a TAFKAL80ETC concert', 11, 0) ]);
+            const gildedRose = new GildedRose([ new Normal('Backstage passes to a TAFKAL80ETC concert', 11, 0) ]);
 
             const [item] = gildedRose.updateQuality();
 
@@ -81,7 +81,7 @@ describe('Gilded Rose', () => {
         });
 
         it("should increase in quality by 2 with a sell in between 10 and 6", () => {
-            const gildedRose = new GildedRose([ new Item('Backstage passes to a TAFKAL80ETC concert', 7, 0) ]);
+            const gildedRose = new GildedRose([ new Normal('Backstage passes to a TAFKAL80ETC concert', 7, 0) ]);
 
             const [item] = gildedRose.updateQuality();
 
@@ -89,7 +89,7 @@ describe('Gilded Rose', () => {
         });
 
         it("should increase in quality by 3 with a sell in between 1 and 5", () => {
-            const gildedRose = new GildedRose([ new Item('Backstage passes to a TAFKAL80ETC concert', 2, 0) ]);
+            const gildedRose = new GildedRose([ new Normal('Backstage passes to a TAFKAL80ETC concert', 2, 0) ]);
 
             const [item] = gildedRose.updateQuality();
 
@@ -97,7 +97,7 @@ describe('Gilded Rose', () => {
         });
 
         it("should have a quality of 0 after the sellIn date", () => {
-            const gildedRose = new GildedRose([ new Item('Backstage passes to a TAFKAL80ETC concert', 0, 5) ]);
+            const gildedRose = new GildedRose([ new Normal('Backstage passes to a TAFKAL80ETC concert', 0, 5) ]);
 
             const [item] = gildedRose.updateQuality();
 
