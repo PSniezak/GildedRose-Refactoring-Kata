@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { GildedRose } from '../app/gilded-rose';
-import { Normal, AgedBrie, Sulfuras, BackstagePass } from '../app/items';
+import { Normal, AgedBrie, Sulfuras, BackstagePass, Conjured } from '../app/items';
 
 describe('Gilded Rose', () => {
     describe('General', () => {
@@ -102,6 +102,32 @@ describe('Gilded Rose', () => {
             const [item] = gildedRose.updateQuality();
 
             expect(item.quality).to.equal(0);
+        });
+    });
+
+    describe('Conjured', () => {
+        it("should decrease quality by 2 when sellIn value is greater than 0", () => {
+            const gildedRose = new GildedRose([ new Conjured('Conjured Apple', 3, 10) ]);
+
+            const [item] = gildedRose.updateQuality();
+
+            expect(item.quality).to.equal(8);
+        });
+
+        it("should decrease quality by 4 when sellIn value is 0", () => {
+            const gildedRose = new GildedRose([ new Conjured('Conjured Apple', 0, 10) ]);
+
+            const [item] = gildedRose.updateQuality();
+
+            expect(item.quality).to.equal(6);
+        });
+
+        it("should decrease quality by 4 when sellIn value is less than 0", () => {
+            const gildedRose = new GildedRose([ new Conjured('Conjured Apple', -1, 10) ]);
+
+            const [item] = gildedRose.updateQuality();
+
+            expect(item.quality).to.equal(6);
         });
     });
 });

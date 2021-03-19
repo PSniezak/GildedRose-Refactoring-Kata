@@ -48,3 +48,15 @@ export class BackstagePass extends Item {
     return this;
   }
 }
+
+export class Conjured extends Item {
+  decay = () => {
+    this.quality = decreaseQuality(this.quality);
+    this.quality = decreaseQuality(this.quality);
+    this.quality = this.sellIn <= 0 ? decreaseQuality(this.quality) : this.quality;
+    this.quality = this.sellIn <= 0 ? decreaseQuality(this.quality) : this.quality;
+    this.sellIn = decreaseSellIn(this.sellIn);
+
+    return this;
+  }
+}
