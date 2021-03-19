@@ -31,3 +31,22 @@ export class AgedBrie extends Item {
     return this;
   }
 }
+
+export class Sulfuras extends Item {
+  decay () {
+    return this;
+  }
+}
+
+export class BackstagePass extends Item {
+  decay () {
+    let quality = increaseQuality(this.quality);
+    quality = this.sellIn < 11 ? increaseQuality(quality) : quality;
+    quality = this.sellIn < 6 ? increaseQuality(quality) : quality;
+
+    this.quality = this.sellIn === 0 ? 0 : quality;    
+    this.sellIn -= 1;
+
+    return this;
+  }
+}

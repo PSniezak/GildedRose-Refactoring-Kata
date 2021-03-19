@@ -1,6 +1,6 @@
-import { AgedBrie, Normal } from './item';
+import { AgedBrie, Normal, Sulfuras, BackstagePass } from './item';
 
-type GildedRoseItems = Normal | AgedBrie;
+type GildedRoseItems = Normal | AgedBrie | Sulfuras | BackstagePass;
 
 export class GildedRose {
   items: GildedRoseItems[];
