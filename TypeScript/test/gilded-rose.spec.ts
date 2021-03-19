@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { GildedRose } from '../app/gilded-rose';
-import { Normal, AgedBrie, Sulfuras, BackstagePass } from '../app/item';
+import { Normal, AgedBrie, Sulfuras, BackstagePass } from '../app/items';
 
 describe('Gilded Rose', () => {
     describe('General', () => {

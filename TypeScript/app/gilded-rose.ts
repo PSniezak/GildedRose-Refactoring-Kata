@@ -1,4 +1,4 @@
-import { AgedBrie, Normal, Sulfuras, BackstagePass } from './item';
+import { AgedBrie, Normal, Sulfuras, BackstagePass } from './items';
 
 type GildedRoseItems = Normal | AgedBrie | Sulfuras | BackstagePass;
 
@@ -9,8 +9,8 @@ export class GildedRose {
     this.items = items;
   }
   
-  updateQuality() {
-    return this.items.map(function (item) {
+  updateQuality = () => {
+    return this.items.map((item) => {
       return item.decay();
     });
   }
